@@ -4,11 +4,6 @@ import React, { useState, useMemo } from "react";
 function App() {
   const [number, setNumber] = useState(0);
 
-  const onChange = (e) => {
-    setNumber(e.currentTarget.value);
-    console.log(number);
-  };
-
   return (
     <div className="App">
       <div className="control has-icons-right">
@@ -17,7 +12,7 @@ function App() {
           type="text"
           placeholder="Enter number..."
           value={number}
-          onChange={onChange}
+          onChange={(e) => setNumber(e.target.value)}
         />
         <span className="icon is-small is-right">
           <i className="fas fa-times" />
