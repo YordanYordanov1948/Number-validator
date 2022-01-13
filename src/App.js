@@ -2,7 +2,22 @@ import "./App.css";
 import React, { useState, useMemo } from "react";
 
 function App() {
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState("");
+
+  const onChangeHandler = (event) => {
+    setNumber(event.target.value);
+    console.log(number);
+  };
+
+  const Number = useMemo(() => {
+    if (number == 1) {
+      return (
+        <span className="icon is-small is-right">
+          <i className="fas fa-times" />
+        </span>
+      );
+    }
+  });
 
   return (
     <div className="App">
@@ -12,7 +27,7 @@ function App() {
           type="text"
           placeholder="Enter number..."
           value={number}
-          onChange={(e) => setNumber(e.target.value)}
+          onChange={onChangeHandler}
         />
         <span className="icon is-small is-right">
           <i className="fas fa-times" />
