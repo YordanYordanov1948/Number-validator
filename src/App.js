@@ -6,7 +6,6 @@ function App() {
 
   const onChangeHandler = (event) => {
     setText(event.target.value);
-    console.log(number);
   };
 
   const isNumber = useMemo(() => {
