@@ -2,22 +2,17 @@ import "./App.css";
 import React, { useState, useMemo } from "react";
 
 function App() {
-  const [number, setNumber] = useState("");
+  const [text, setText] = useState("");
 
   const onChangeHandler = (event) => {
-    setNumber(event.target.value);
+    setText(event.target.value);
     console.log(number);
   };
 
-  const Number = useMemo(() => {
-    if (number == 1) {
-      return (
-        <span className="icon is-small is-right">
-          <i className="fas fa-times" />
-        </span>
-      );
-    }
-  });
+  const isNumber = useMemo(() => {
+    const regex = /^\d+$/;
+    return regex.test(text);
+  }, [text]);
 
   return (
     <div className="App">
@@ -26,12 +21,18 @@ function App() {
           className="input is-large"
           type="text"
           placeholder="Enter number..."
-          value={number}
+          value={text}
           onChange={onChangeHandler}
         />
-        <span className="icon is-small is-right">
-          <i className="fas fa-times" />
-        </span>
+        {isNumber ? (
+          <span className="icon is-small is-right">
+            <i className="fas fa-check" />
+          </span>
+        ) : (
+          <span className="icon is-small is-right">
+            <i className="fas fa-times" />{" "}
+          </span>
+        )}
       </div>
     </div>
   );
